@@ -6,8 +6,8 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Getter
-@NoArgsConstructor
 @Entity
+@NoArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
 public class Schedule extends BaseEntity{
 
@@ -24,5 +24,10 @@ public class Schedule extends BaseEntity{
         this.content = content;
         this.name = name;
         this.password = password;
+    }
+
+    public void modifySchedule(String title, String name){
+        this.title = title;
+        this.name = name;
     }
 }
