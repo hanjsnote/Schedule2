@@ -7,12 +7,12 @@ import java.time.LocalDateTime;
 @Getter
 public class ScheduleAllFindResponse {
 
-    private Long id;
-    private String title;
-    private String content;
-    private String name;
-    private LocalDateTime createdAt;
-    private LocalDateTime modifiedAt;
+    private final Long id;
+    private final String title;
+    private final String content;
+    private final String name;
+    private final LocalDateTime createdAt;
+    private final LocalDateTime modifiedAt;
 
     public ScheduleAllFindResponse(Long id, String title, String content, String name, LocalDateTime createdAt, LocalDateTime modifiedAt){
         this.id = id;
