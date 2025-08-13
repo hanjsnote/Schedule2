@@ -1,14 +1,14 @@
-package org.example.schedule2.dto;
+package org.example.schedule2.dtoSchedule;
 
 import lombok.Getter;
 
 @Getter
-public class ScheduleModifyResponse {
+public class UpdateSchedulesResponse {
 
     private final String title;
     private final String name;
 
-    public ScheduleModifyResponse(String title, String name){
+    public UpdateSchedulesResponse(String title, String name){
         this.title = title;
         this.name = name;
 
