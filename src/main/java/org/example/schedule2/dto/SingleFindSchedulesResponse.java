@@ -5,7 +5,7 @@ import lombok.Getter;
 import java.time.LocalDateTime;
 
 @Getter
-public class ScheduleAllFindResponse {
+public class SingleFindScheduleResponse {
 
     private final Long id;
     private final String title;
@@ -14,7 +14,7 @@ public class ScheduleAllFindResponse {
     private final LocalDateTime createdAt;
     private final LocalDateTime modifiedAt;
 
-    public ScheduleAllFindResponse(Long id, String title, String content, String name, LocalDateTime createdAt, LocalDateTime modifiedAt){
+    public SingleFindScheduleResponse(Long id, String title, String content, String name, LocalDateTime createdAt, LocalDateTime modifiedAt){
         this.id = id;
         this.title = title;
         this.content = content;
@@ -22,4 +22,5 @@ public class ScheduleAllFindResponse {
         this.createdAt = createdAt;
         this.modifiedAt = modifiedAt;
     }
+
 }
