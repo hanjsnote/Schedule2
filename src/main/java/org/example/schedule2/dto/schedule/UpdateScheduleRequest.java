@@ -1,12 +1,14 @@
-package org.example.schedule2.dto;
+package org.example.schedule2.dto.dtoSchedule;
 
 import lombok.Getter;
 
 @Getter
-public class SaveSchedulesRequest {
+public class UpdateScheduleRequest {
 
     private String title;
-    private String content;
     private String name;
     private String password;
+    private String content;
+
+
 }
