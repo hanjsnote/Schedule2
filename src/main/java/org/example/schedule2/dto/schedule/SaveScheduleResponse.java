@@ -5,7 +5,7 @@ import lombok.Getter;
 import java.time.LocalDateTime;
 
 @Getter
-public class SaveSchedulesResponse {
+public class SaveScheduleResponse {
 
     private final Long id;
     private final String title;
@@ -14,7 +14,7 @@ public class SaveSchedulesResponse {
     private final LocalDateTime createdAt;
     private final LocalDateTime modifiedAt;
 
-    public SaveSchedulesResponse(Long id, String title, String content, String name, LocalDateTime createdAt, LocalDateTime modifiedAt){
+    public SaveScheduleResponse(Long id, String title, String content, String name, LocalDateTime createdAt, LocalDateTime modifiedAt){
         this.id = id;
         this.title = title;
         this.content = content;
