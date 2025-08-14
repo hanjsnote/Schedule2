@@ -6,7 +6,9 @@
 JDK: corretto-17 Amazon Corretto-17.0.15 - aarch64
 
 2. 개발 기간: 2025.08.11 ~ 2025.08.13
-3. 날짜별 개발 11일: lv1 일정 생성 12일: lv1 일정 조회, lv1 일정 수정, 13일 lv1 일정 삭제, lv2 유저 crud 
+3. 날짜별 개발: 11일: lv1 일정 생성, 12일: lv1 일정 조회, lv1 일정 수정, 13일 lv1 일정 삭제, lv2 유저 crud
+4. 기능: 1. 일정 CRUD, 유저 CRUD
+5. 실행 방법 Java 17이상 설치 필요 Schedule2Application의 main() 실행시 프로그램 시작
 
 
 
