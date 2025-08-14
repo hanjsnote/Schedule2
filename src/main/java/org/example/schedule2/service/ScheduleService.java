@@ -39,12 +39,12 @@ public class ScheduleService {
 
     //일정 조회
     @Transactional(readOnly = true)
-    public List<FindAllScheduleResponse> findsAll(String name) {
+    public List<FindAllScheduleResponse> findsAll(String userName) {
 
         List<Schedule> findAll = scheduleRepository.findAll();
         List<FindAllScheduleResponse> dtos = new ArrayList<>();
 
-        if(name == null){
+        if(userName == null){
             for(Schedule schedule : findAll){
                 dtos.add(new FindAllScheduleResponse(
                         schedule.getId(),
@@ -59,7 +59,7 @@ public class ScheduleService {
         }
 
         for(Schedule schedule : findAll){
-            if(name.equals(schedule.getName())){
+            if(userName.equals(schedule.getName())){
                 dtos.add(new FindAllScheduleResponse(
                         schedule.getId(),
                         schedule.getTitle(),
