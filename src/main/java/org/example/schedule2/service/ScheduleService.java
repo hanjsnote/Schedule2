@@ -1,13 +1,11 @@
 package org.example.schedule2.service;
 
 import lombok.RequiredArgsConstructor;
-import org.example.schedule2.dto.*;
+import org.example.schedule2.dto.schedule.*;
 import org.example.schedule2.entity.Schedule;
 import org.example.schedule2.repository.ScheduleRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.ObjectUtils;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +18,7 @@ public class ScheduleService {
     private final ScheduleRepository scheduleRepository;
 
     //일정 생성
-    public ScheduleSaveResponse saveSchedule(ScheduleSaveRequest request) {
+    public SaveScheduleResponse saveSchedule(SaveScheduleRequest request) {
         Schedule schedule = new Schedule(
                 request.getTitle(),
                 request.getContent(),
@@ -29,7 +27,7 @@ public class ScheduleService {
         );
         Schedule savedSchedule = scheduleRepository.save(schedule);
 
-        return new ScheduleSaveResponse(
+        return new SaveScheduleResponse(
                 savedSchedule.getId(),
                 savedSchedule.getTitle(),
                 savedSchedule.getContent(),
@@ -41,14 +39,14 @@ public class ScheduleService {
 
     //일정 조회
     @Transactional(readOnly = true)
-    public List<ScheduleAllFindResponse> findsAll(String name) {
+    public List<FindAllScheduleResponse> findsAll(String name) {
 
         List<Schedule> findAll = scheduleRepository.findAll();
-        List<ScheduleAllFindResponse> dtos = new ArrayList<>();
+        List<FindAllScheduleResponse> dtos = new ArrayList<>();
 
         if(name == null){
             for(Schedule schedule : findAll){
-                dtos.add(new ScheduleAllFindResponse(
+                dtos.add(new FindAllScheduleResponse(
                         schedule.getId(),
                         schedule.getTitle(),
                         schedule.getContent(),
@@ -62,7 +60,7 @@ public class ScheduleService {
 
         for(Schedule schedule : findAll){
             if(name.equals(schedule.getName())){
-                dtos.add(new ScheduleAllFindResponse(
+                dtos.add(new FindAllScheduleResponse(
                         schedule.getId(),
                         schedule.getTitle(),
                         schedule.getContent(),
@@ -77,11 +75,11 @@ public class ScheduleService {
 
     //일정 단건 조회
     @Transactional(readOnly = true)
-    public ScheduleSingleFindResponse singleFind(long id) {
+    public SingleFindSchedulesResponse singleFind(long id) {
         Schedule schedule = scheduleRepository.findById(id).orElseThrow(
                 () -> new IllegalArgumentException("해당 id가 존재하지 않습니다")
         );
-        return new ScheduleSingleFindResponse(
+        return new SingleFindSchedulesResponse(
                 schedule.getId(),
                 schedule.getTitle(),
                 schedule.getContent(),
@@ -92,7 +90,7 @@ public class ScheduleService {
     }
 
     //일정 수정
-    public ScheduleModifyResponse modifySchedule(long id, ScheduleModifyRequest request) {
+    public UpdateScheduleResponse updateSchedule(long id, UpdateScheduleRequest request) {
         Schedule schedule = scheduleRepository.findById(id).orElseThrow(
                 () -> new IllegalArgumentException("해당 id가 존재하지 않습니다.")
         );
@@ -107,12 +105,20 @@ public class ScheduleService {
 
         schedule.modifySchedule(
                 request.getTitle(),
-                request.getName()
+                request.getContent()
         );
 
-        return new ScheduleModifyResponse(
+        return new UpdateScheduleResponse(
                 schedule.getTitle(),
-                schedule.getName()
+                schedule.getContent()
         );
+    }
+
+    //일정 삭제
+    public void deleteSchedule(long id) {
+        Schedule schedule = scheduleRepository.findById(id).orElseThrow(
+                () -> new IllegalArgumentException("해당 id가 존재하지 않습니다.")
+        );
+        scheduleRepository.deleteById(schedule.getId());
     }
 }
