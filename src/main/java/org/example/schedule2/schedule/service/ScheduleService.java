@@ -6,8 +6,10 @@ import org.example.schedule2.schedule.repository.ScheduleRepository;
 import org.example.schedule2.schedule.dto.*;
 import org.example.schedule2.user.entity.User;
 import org.example.schedule2.user.repository.UserRepository;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +25,11 @@ public class ScheduleService {
     //일정 생성
     public SaveScheduleResponse saveSchedule(SaveScheduleRequest request) {
 
-        User findUser = userRepository.findUserByUerNameOrElseThrow(request.getUserName());
+//        User findUser = userRepository.findUserByUserIdOrElseThrow(request.getUserId());
+
+       User findUser = userRepository.findById(request.getUserId()).orElseThrow(
+               () -> new ResponseStatusException(HttpStatus.NOT_FOUND)
+       );
 
         Schedule schedule = new Schedule(
                 request.getTitle(),
