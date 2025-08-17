@@ -4,6 +4,8 @@ import lombok.RequiredArgsConstructor;
 import org.example.schedule2.schedule.entity.Schedule;
 import org.example.schedule2.schedule.repository.ScheduleRepository;
 import org.example.schedule2.schedule.dto.*;
+import org.example.schedule2.user.entity.User;
+import org.example.schedule2.user.repository.UserRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,22 +18,26 @@ import java.util.List;
 public class ScheduleService {
 
     private final ScheduleRepository scheduleRepository;
+    private final UserRepository userRepository;
 
     //일정 생성
     public SaveScheduleResponse saveSchedule(SaveScheduleRequest request) {
+
+        User findUser = userRepository.findUserByUerNameOrElseThrow(request.getUserName());
+
         Schedule schedule = new Schedule(
                 request.getTitle(),
                 request.getContent(),
-                request.getName(),
                 request.getPassword()
         );
+        schedule.setUser(findUser);
         Schedule savedSchedule = scheduleRepository.save(schedule);
 
         return new SaveScheduleResponse(
                 savedSchedule.getId(),
                 savedSchedule.getTitle(),
                 savedSchedule.getContent(),
-                savedSchedule.getName(),
+                savedSchedule.getUser().getUserName(),
                 savedSchedule.getCreatedAt(),
                 savedSchedule.getModifiedAt()
         );
@@ -50,7 +56,7 @@ public class ScheduleService {
                         schedule.getId(),
                         schedule.getTitle(),
                         schedule.getContent(),
-                        schedule.getName(),
+                        schedule.getUser().getUserName(),
                         schedule.getCreatedAt(),
                         schedule.getModifiedAt()
                 ));
@@ -59,12 +65,12 @@ public class ScheduleService {
         }
 
         for(Schedule schedule : findAll){
-            if(userName.equals(schedule.getName())){
+            if(userName.equals(schedule.getUser().getUserName())){
                 dtos.add(new FindAllScheduleResponse(
                         schedule.getId(),
                         schedule.getTitle(),
                         schedule.getContent(),
-                        schedule.getName(),
+                        schedule.getUser().getUserName(),
                         schedule.getCreatedAt(),
                         schedule.getModifiedAt()
                 ));
@@ -83,7 +89,7 @@ public class ScheduleService {
                 schedule.getId(),
                 schedule.getTitle(),
                 schedule.getContent(),
-                schedule.getName(),
+                schedule.getUser().getUserName(),
                 schedule.getCreatedAt(),
                 schedule.getModifiedAt()
         );

@@ -3,6 +3,7 @@ package org.example.schedule2.schedule.controller;
 import lombok.RequiredArgsConstructor;
 import org.example.schedule2.schedule.dto.*;
 import org.example.schedule2.schedule.service.ScheduleService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,7 +18,10 @@ public class ScheduleController {
     //일정 생성
     @PostMapping("/schedules")
     public ResponseEntity<SaveScheduleResponse> saveSchedule(@RequestBody SaveScheduleRequest request){
-        return ResponseEntity.ok(scheduleService.saveSchedule(request));
+
+       SaveScheduleResponse saveScheduleResponse = scheduleService.saveSchedule(request);
+
+        return new ResponseEntity<>(saveScheduleResponse, HttpStatus.CREATED);
     }
 
     //일정 조회
