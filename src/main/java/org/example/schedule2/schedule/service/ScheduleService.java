@@ -1,9 +1,9 @@
-package org.example.schedule2.service;
+package org.example.schedule2.schedule.service;
 
 import lombok.RequiredArgsConstructor;
-import org.example.schedule2.dto.schedule.*;
-import org.example.schedule2.entity.Schedule;
-import org.example.schedule2.repository.ScheduleRepository;
+import org.example.schedule2.schedule.entity.Schedule;
+import org.example.schedule2.schedule.repository.ScheduleRepository;
+import org.example.schedule2.schedule.dto.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
