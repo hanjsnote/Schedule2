@@ -1,8 +1,8 @@
-package org.example.schedule2.controller;
+package org.example.schedule2.schedule.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.example.schedule2.dto.schedule.*;
-import org.example.schedule2.service.ScheduleService;
+import org.example.schedule2.schedule.dto.*;
+import org.example.schedule2.schedule.service.ScheduleService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

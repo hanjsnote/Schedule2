@@ -1,4 +1,4 @@
-package org.example.schedule2.dto.schedule;
+package org.example.schedule2.schedule.dto;
 
 import lombok.Getter;
 
