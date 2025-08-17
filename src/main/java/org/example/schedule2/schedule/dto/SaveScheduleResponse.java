@@ -10,15 +10,15 @@ public class SaveScheduleResponse {
     private final Long id;
     private final String title;
     private final String content;
-    private final String name;
+    private final String userName;
     private final LocalDateTime createdAt;
     private final LocalDateTime modifiedAt;
 
-    public SaveScheduleResponse(Long id, String title, String content, String name, LocalDateTime createdAt, LocalDateTime modifiedAt){
+    public SaveScheduleResponse(Long id, String title, String content, String userName, LocalDateTime createdAt, LocalDateTime modifiedAt){
         this.id = id;
         this.title = title;
         this.content = content;
-        this.name = name;
+        this.userName = userName;
         this.createdAt = createdAt;
         this.modifiedAt = modifiedAt;
 

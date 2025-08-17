@@ -3,6 +3,8 @@ package org.example.schedule2.schedule.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.example.schedule2.user.entity.User;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Getter
@@ -14,15 +16,21 @@ public class Schedule extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String title;
+
     private String content;
-    private String name;
+
     private String password;
 
-    public Schedule(String title, String content, String name, String password){
+    @Setter
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    public Schedule(String title, String content, String password){
         this.title = title;
         this.content = content;
-        this.name = name;
         this.password = password;
     }
 

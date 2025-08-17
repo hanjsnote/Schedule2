@@ -7,6 +7,6 @@ public class SaveScheduleRequest {
 
     private String title;
     private String content;
-    private String name;
+    private String userName;
     private String password;
 }
